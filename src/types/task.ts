@@ -4,7 +4,7 @@ export interface Task {
   id: string;
   priority: Priority;
   title: string;
-  descrption: string;
+  description?: string;
   completed: boolean;
-  createdAt: Date;
+  createdAt: number;
 }
