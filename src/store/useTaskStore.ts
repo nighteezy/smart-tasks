@@ -8,9 +8,13 @@ interface TaskState {
   addTask: (title: string, priority: Priority, description?: string) => void;
   toggleTask: (id: string) => void;
   deleteTask: (id: string) => void;
+  updateTask: (
+    id: string,
+    updatedFields: Partial<Omit<Task, "id" | "createdAt">>
+  ) => void;
 }
 
-export const UseTaskStore = create<TaskState>()(
+export const useTaskStore = create<TaskState>()(
   persist(
     (set) => ({
       tasks: [],
@@ -37,6 +41,12 @@ export const UseTaskStore = create<TaskState>()(
       deleteTask: (id) =>
         set((state) => ({
           tasks: state.tasks.filter((task) => task.id !== id),
+        })),
+      updateTask: (id, updatedData) =>
+        set((state) => ({
+          tasks: state.tasks.map((task) =>
+            task.id === id ? { ...task, ...updatedData } : task
+          ),
         })),
     }),
     {

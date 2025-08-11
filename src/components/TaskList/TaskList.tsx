@@ -1,22 +1,19 @@
-import { UseTaskStore } from "../../store/useTaskStore";
+import { useTaskStore } from "../../store/useTaskStore";
 import { TaskItem } from "../TaskItem/TaskItem";
 
 export const TaskList: React.FC = () => {
-  const tasks = UseTaskStore((state) => state.tasks);
-  //const addTask = UseTaskStore((state) => state.addTask)
-  const toggleTask = UseTaskStore((state) => state.toggleTask);
-  const deleteTask = UseTaskStore((state) => state.deleteTask);
+  const { tasks } = useTaskStore();
+
+  if (tasks.length === 0) {
+    return <p className="text-center text-2xl">Нет задач</p>;
+  }
   return (
-    <div>
-      <ul>
+    <section className="">
+      <ul className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         {tasks.map((task) => (
-          <TaskItem
-            task={task}
-            onToggleComplete={toggleTask}
-            onDelete={deleteTask}
-          />
+          <TaskItem task={task} />
         ))}
       </ul>
-    </div>
+    </section>
   );
 };
