@@ -1,8 +1,8 @@
-import { useTaskStore } from "../../store/useTaskStore";
+import { useTask } from "../../store/useTaskStore";
 import { TaskItem } from "../TaskItem/TaskItem";
 
 export const TaskList: React.FC = () => {
-  const { tasks } = useTaskStore();
+  const tasks = useTask();
 
   if (tasks.length === 0) {
     return <p className="text-center text-2xl">Нет задач</p>;
