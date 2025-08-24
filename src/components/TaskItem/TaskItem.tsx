@@ -1,6 +1,6 @@
 import React from "react";
 import type { Task } from "../../types/task";
-import { deletedTask, toggletedTask } from "../../store/useTaskStore";
+import { deleteTask, toggleTask } from "../../store/useTaskStore";
 import { openEditModal } from "../../store/useModalStore";
 
 interface TaskItemProps {
@@ -14,7 +14,7 @@ export const TaskItem: React.FC<TaskItemProps> = ({ task }) => {
         <input
           type="checkbox"
           checked={task.completed}
-          onChange={() => toggletedTask(task.id)}
+          onChange={() => toggleTask(task.id)}
         />
         <div className="task-content">
           <h4>{task.title}</h4>
@@ -23,7 +23,7 @@ export const TaskItem: React.FC<TaskItemProps> = ({ task }) => {
         </div>
         <div className="task-actions">
           <button onClick={() => openEditModal(task)}>✏️ Редактировать</button>
-          <button onClick={() => deletedTask(task.id)}>🗑 Удалить</button>
+          <button onClick={() => deleteTask(task.id)}>🗑 Удалить</button>
         </div>
       </div>
     </div>

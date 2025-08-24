@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import type { Task } from "../types/task";
+import { loadedTask, resetForm } from "./useFormStore";
 
 type ModalMode = "add" | "edit";
 
@@ -25,19 +26,15 @@ interface ModalState extends ModalActions, IInitialStore {}
 
 export const useModalStore = create<ModalState>((set) => ({
   ...initialState,
-  openAddModal: () =>
-    set({
-      isOpen: true,
-      mode: "add",
-      task: null,
-    }),
+  openAddModal: () => {
+    resetForm();
+    set({ isOpen: true, mode: "add", task: null });
+  },
 
-  openEditModal: (task) =>
-    set({
-      isOpen: true,
-      mode: "edit",
-      task,
-    }),
+  openEditModal: (task) => {
+    loadedTask(task, "edit");
+    set({ isOpen: true, mode: "edit", task });
+  },
 
   closeModal: () =>
     set({

@@ -60,8 +60,6 @@ export const useTaskStore = create<TaskStoreState>()(
   })
 );
 
-export const useTask = () => useTaskStore().tasks;
-export const deletedTask = useTaskStore.getState().deleteTask;
-export const updatedTask = useTaskStore.getState().updateTask;
-export const toggletedTask = useTaskStore.getState().toggleTask;
-export const addedTask = useTaskStore.getState().addTask;
+export const useTasks = () => useTaskStore((s) => s.tasks);
+export const { addTask, deleteTask, updateTask, toggleTask } =
+  useTaskStore.getState();
