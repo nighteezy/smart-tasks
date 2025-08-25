@@ -9,22 +9,20 @@ interface TaskItemProps {
 
 export const TaskItem: React.FC<TaskItemProps> = ({ task }) => {
   return (
-    <div className="task-item">
-      <div>
-        <input
-          type="checkbox"
-          checked={task.completed}
-          onChange={() => toggleTask(task.id)}
-        />
-        <div className="task-content">
-          <h4>{task.title}</h4>
-          {task.description && <p>{task.description}</p>}
-          <small>Приоритет: {task.priority}</small>
-        </div>
-        <div className="task-actions">
-          <button onClick={() => openEditModal(task)}>✏️ Редактировать</button>
-          <button onClick={() => deleteTask(task.id)}>🗑 Удалить</button>
-        </div>
+    <div className="task-item flex">
+      <input
+        type="checkbox"
+        checked={task.completed}
+        onChange={() => toggleTask(task.id)}
+      />
+      <div className="task-content">
+        <h4>{task.title}</h4>
+        {task.description && <p>{task.description}</p>}
+        <small>Приоритет: {task.priority}</small>
+      </div>
+      <div className="task-actions">
+        <button onClick={() => openEditModal(task)}>✏️ Редактировать</button>
+        <button onClick={() => deleteTask(task.id)}>🗑 Удалить</button>
       </div>
     </div>
   );
