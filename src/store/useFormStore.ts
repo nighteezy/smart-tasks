@@ -58,11 +58,11 @@ const FormStore: StateCreator<FormState> = (set, get) => ({
 
 export const useFormStore = create<FormState>()(
   persist(FormStore, {
-    name: "task-storage",
+    name: "form-storage",
     storage: createJSONStorage(() => localStorage),
   })
 );
 
 export const loadedTask = useFormStore.getState().loadTask;
-export const handleSubmit = useFormStore.getState().submit;
+export const handleSubmit = () => useFormStore.getState().submit();
 export const resetForm = useFormStore.getState().resetForm;
